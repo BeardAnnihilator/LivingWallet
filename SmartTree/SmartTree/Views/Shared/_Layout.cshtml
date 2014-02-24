@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            @if(User.IsInRole("Admin"))
+                            {
+                                <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                            }
+                            @using SmartTree.Models
+                            @using SmartTree.Helpers
+                            @if ((Request.IsAuthenticated)) 
+                            {
+
+                                SmartTreeEntities db = new SmartTreeEntities();
+                                <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+                                if (User.GetUserFromDb(db).Father == null)
+                                {
+                                    <li>@Html.ActionLink("Market", "Index", "Market")</li>
+                                }
+                            }
+                            
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+            <script type="text/javascript" charset="utf-8" src="@Url.Content("~/Scripts/libs/jquery/jquery-1.7.1.min.js")"></script>
+            <script type="text/javascript" charset="utf-8" src="@Url.Content("~/Scripts/libs/modernizr-1.7.min.js")"></script>
+            <script type="text/javascript" charset="utf-8" src="@Url.Content("~/Scripts/libs/twitter-bootstrap/bootstrap-transition.js")"></script>
+            <script type="text/javascript" charset="utf-8" src="@Url.Content("~/Scripts/libs/twitter-bootstrap/bootstrap-dropdown.js")"></script>
+            <script type="text/javascript" charset="utf-8" src="@Url.Content("~/Scripts/libs/twitter-bootstrap/bootstrap-modal.js")"></script>
+            <script type="text/javascript" charset="utf-8" src="@Url.Content("~/Scripts/libs/jquery/jquery.cookie.js")"></script>
+            <script type="text/javascript" charset="utf-8" src="@Url.Content("~/Scripts/shared/BrowserDetect.js")"></script>
+            <script type="text/javascript" charset="utf-8" src="@Url.Content("~/Scripts/shared/BrowserCompatibilityCheck.js")"></script>
+            <script type="text/javascript" charset="utf-8" src="@Url.Content("~/Scripts/app/shared.js")"></script>
+            @RenderSection("scripts", required: false)
+    </body>
+</html>

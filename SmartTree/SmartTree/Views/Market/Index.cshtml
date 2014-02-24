@@ -1,0 +1,17 @@
+﻿@using SmartTree.ViewModels
+@using SmartTree.Models
+@model MarketViewModel
+
+@{
+    ViewBag.Title = "SmartTree Market - Find a seller and buy multi-coins";
+}
+
+<h2>Market</h2>
+<table border="2">
+    <caption>Availlable Sellers</caption>
+    <tr><th>SellerId</th><th>SellerRank</th><th>MultiCoins available</th><th>Buy button</th></tr>
+@foreach(User u in Model.Sellers)
+{
+    <tr><td>@u.UserId</td><td>@u.Rank</td><td>@u.MultiCoins</td><td>@Html.ActionLink("Buy", "Buy", "Market", new { userId = u.UserId }, new { @class = "btn btn-info choose" })</td></tr>
+}
+</table>

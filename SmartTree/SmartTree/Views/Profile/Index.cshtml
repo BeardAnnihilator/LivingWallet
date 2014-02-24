@@ -1,0 +1,74 @@
+﻿@using SmartTree.ViewModels
+@using SmartTree.Models
+@model ProfileViewModel
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Profile User : @Model.Id</h2>
+<br />
+@if (Model.Seller != null)
+{
+    <text>
+    Seller : @Html.ActionLink("" + @Model.Seller.UserId, "Index", "Profile", new { userId = Model.Seller.UserId }, new { })
+    Multicoins : @Model.Seller.MultiCoins
+    @if(Model.Email == User.Identity.Name)
+    {
+        if (@Model.Seller.MultiCoins > 0)
+        {
+            @Html.ActionLink("Buy", "Buy", "Market", new { userId = Model.Seller.UserId }, new { @class = "btn btn-info choose" })
+        }
+        else
+        {
+            @Html.ActionLink("Call", "Call", "Market", new { },new { @class = "btn btn-info choose" })
+        }
+    }
+    </text>
+}
+<br />
+Balance : @Model.Balance.ToString("0.00") € 
+@if(Model.Email == User.Identity.Name)
+{
+    @Html.ActionLink("Deposit", "Deposit", "Market", new {}, new { @class = "btn btn-info choose" })
+    @Html.ActionLink("Withdraw", "Withdraw", "Market", new {}, new { @class = "btn btn-info choose" })
+}
+<br />
+Reserved part : @Model.ReservedPart.ToString("0.00") € (reserved for calls)
+<br />
+<br />
+Number of emited calls: @Model.EmitedCalls 
+<br />
+Number of received calls: @Model.ReceivedCalls 
+<br />
+Multicoins : @Model.MultiCoins
+<br />
+@if (Model.Buyers.Count > 0)
+{
+    <text>
+Childs :
+<br />
+@foreach (User child in Model.Buyers)
+{
+    @Html.ActionLink("" + child.UserId, "Index", "Profile", new { userId = child.UserId}, new {})
+    <br />
+}
+    </text>
+}
+
+<br />
+    @if(Model.Email == User.Identity.Name)
+    {
+        @Html.ActionLink("Manage", "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
+    }
+
+<br />
+<h2>Market</h2>
+<table border="2">
+    <caption>Availlable Sellers</caption>
+    <tr><th>SellerId</th><th>SellerRank</th><th>MultiCoins available</th></tr>
+@foreach(User u in Model.Sellers)
+{
+    <tr><td>@u.UserId</td><td>@u.Rank</td><td>@u.MultiCoins</td></tr>
+}
+</table>
