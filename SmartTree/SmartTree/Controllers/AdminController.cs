@@ -6,10 +6,12 @@ using System.Web.Mvc;
 using SmartTree.Models;
 using SmartTree.Helpers;
 using System.Data.Entity.Infrastructure;
+using SmartTree.Filters;
 
 
 namespace SmartTree.Controllers
 {
+    [InitializeSimpleMembership]
     public class AdminController : Controller
     {
 

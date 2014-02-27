@@ -189,3 +189,4 @@ D:\GitHub\LivingWallet\SmartTree\SmartTree\obj\Debug\SmartTree.Properties.Resour
 D:\GitHub\LivingWallet\SmartTree\SmartTree\obj\Debug\SmartTree.csproj.GenerateResource.Cache
 D:\GitHub\LivingWallet\SmartTree\SmartTree\obj\Debug\SmartTree.dll
 D:\GitHub\LivingWallet\SmartTree\SmartTree\obj\Debug\SmartTree.pdb
+D:\GitHub\LivingWallet\SmartTree\SmartTree\bin\PaymillWrapper.dll

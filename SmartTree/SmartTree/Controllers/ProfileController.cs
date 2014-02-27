@@ -6,10 +6,12 @@ using System.Web.Mvc;
 using SmartTree.Models;
 using SmartTree.ViewModels;
 using SmartTree.Helpers;
+using SmartTree.Filters;
 
 namespace SmartTree.Controllers
 {
     [Authorize]
+    [InitializeSimpleMembership]
     public class ProfileController : Controller
     {
         //

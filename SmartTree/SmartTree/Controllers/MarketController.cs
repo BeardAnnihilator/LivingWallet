@@ -7,10 +7,12 @@ using SmartTree.Models;
 using SmartTree.Helpers;
 using SmartTree.ViewModels;
 using System.Data.Entity.Infrastructure;
+using SmartTree.Filters;
 
 namespace SmartTree.Controllers
 {
     [Authorize]
+    [InitializeSimpleMembership]
     public class MarketController : Controller
     {
         //

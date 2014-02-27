@@ -1,0 +1,11 @@
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\bin\Debug\Payment-Wrapper.exe.config
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\bin\Debug\Payment-Wrapper.exe
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\bin\Debug\Payment-Wrapper.pdb
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\bin\Debug\PaymillWrapper.dll
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\bin\Debug\Newtonsoft.Json.dll
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\bin\Debug\System.Net.Http.Formatting.dll
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\bin\Debug\System.Net.Http.Formatting.xml
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\bin\Debug\fr\System.Net.Http.Formatting.resources.dll
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\obj\Debug\Payment-Wrapper.csprojResolveAssemblyReference.cache
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\obj\Debug\Payment-Wrapper.exe
+D:\GitHub\LivingWallet\SmartTree\Payment-Wrapper\obj\Debug\Payment-Wrapper.pdb
