@@ -13,21 +13,13 @@ namespace Payment_Wrapper
     {
         static void Main(string[] args)
         {
+            PaymillHelper payment = new PaymillHelper("https://api.paymill.com/v2", "0e63b44b07fc9bfca24003be5da3d93e");
 
-            string apiUrl = "https://api.paymill.com/v2/";
-            string apiKey = "0e63b44b07fc9bfca24003be5da3d93e";
-
-            Paymill.ApiKey = apiKey;
-            Paymill.ApiUrl = apiUrl;
-
-            ClientService clientService = Paymill.GetService<ClientService>();
-
-            Client c = new Client();
-            c.Description = "Prueba API";
-            c.Email = "javicantos22@hotmail.es";
-
-            Client newClient = clientService.Create(c.Email, c.Description);   
-
+            var client = payment.CreateCustomer("blabla@yopmail.com", "testCustomer");
+            foreach (Client c in payment.getCustomers())
+            {
+                payment.DeleteCustomer(c);
+            }
        }
     }
 }
