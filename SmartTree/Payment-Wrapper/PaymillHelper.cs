@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Payment_Wrapper
 {
-    class PaymillHelper
+    public class PaymillHelper
     {
         #region Inisalization
         public PaymillHelper(string apiUrl, string apiKey)
@@ -22,6 +22,7 @@ namespace Payment_Wrapper
             PaymillWrapper.Paymill.ApiKey = apiKey;
             PaymillWrapper.Paymill.ApiUrl = apiUrl;
             clientService = Paymill.GetService<ClientService>();
+            paymentService = Paymill.GetService<PaymentService>();
         }
         #endregion
 
@@ -51,5 +52,36 @@ namespace Payment_Wrapper
             return response;
         }
         #endregion
+
+        #region CreditCards
+        PaymentService paymentService = null;
+        public Payment CreateCreditCard(Client customer, string PaymentToken)
+        {
+            Payment payment = paymentService.Create(PaymentToken, customer.Id);
+            return payment;
+        }
+        public Payment GetCreditCard(string PaymentId)
+        {
+            Payment payment = paymentService.Get(PaymentId);
+            return payment;
+        }
+        public List<Payment> GetCreditCards()
+        {
+            List<Payment> payments = paymentService.GetPayments();
+            return payments;
+        }
+        public bool DeleteCreditCard(string PaymentId)
+        {
+            bool response = paymentService.Remove(PaymentId);
+            return response;
+        }
+        #endregion
+    }
+    public static class Extensions
+    {
+        public static Payment AddCreditCard(this Client customer, string PaymentToken ,PaymillHelper ph)
+        {
+            return ph.CreateCreditCard(customer, PaymentToken);
+        }
     }
 }
