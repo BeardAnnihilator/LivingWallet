@@ -23,6 +23,7 @@ namespace Payment_Wrapper
             PaymillWrapper.Paymill.ApiUrl = apiUrl;
             clientService = Paymill.GetService<ClientService>();
             paymentService = Paymill.GetService<PaymentService>();
+            transactionService = Paymill.GetService<TransactionService>();
         }
         #endregion
 
@@ -76,12 +77,47 @@ namespace Payment_Wrapper
             return response;
         }
         #endregion
+
+        #region Transactions
+        TransactionService transactionService = null;
+        public Transaction CreateTransaction(Client customer, Payment creditCard, int amount, string currency = "EUR")
+        {
+            Transaction createdTransaction = transactionService.Create(
+                new Transaction { Payment = creditCard, Client = customer, Amount = amount, Currency = currency}
+                , null);
+            return createdTransaction;
+        }
+        public Transaction GetTransaction(string transactionId)
+        {
+            Transaction retriviedTransaction = transactionService.Get(transactionId);
+            return retriviedTransaction;
+        }
+        public List<Transaction> getTransactions()
+        {
+            List<Transaction> transactions = transactionService.GetTransactions();
+            return transactions;
+        }
+        #endregion
+
+        #region Utilities
+        public static int DoubleToPaymillPrice(double price)
+        {
+            return (int)(price * 100);
+        }
+        #endregion
     }
     public static class Extensions
     {
         public static Payment AddCreditCard(this Client customer, string PaymentToken ,PaymillHelper ph)
         {
             return ph.CreateCreditCard(customer, PaymentToken);
+        }
+
+        public static Transaction Pay(this Client customer, PaymillHelper ph, double amount, Payment creditCard = null)
+        {
+            if (creditCard == null)
+                creditCard = customer.Payment.FirstOrDefault();
+            return ph.CreateTransaction(customer, creditCard, PaymillHelper.DoubleToPaymillPrice(amount));
         }
     }
 }
