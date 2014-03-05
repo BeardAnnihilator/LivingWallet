@@ -287,3 +287,5 @@ D:\Users\aperipha\Documents\GitHub\LivingWallet\SmartTree\SmartTree\obj\Debug\Sm
 D:\Users\aperipha\Documents\GitHub\LivingWallet\SmartTree\SmartTree\obj\Debug\SmartTree.csproj.GenerateResource.Cache
 D:\Users\aperipha\Documents\GitHub\LivingWallet\SmartTree\SmartTree\obj\Debug\SmartTree.dll
 D:\Users\aperipha\Documents\GitHub\LivingWallet\SmartTree\SmartTree\obj\Debug\SmartTree.pdb
+D:\Users\aperipha\Documents\GitHub\LivingWallet\SmartTree\SmartTree\bin\Payment-Wrapper.exe
+D:\Users\aperipha\Documents\GitHub\LivingWallet\SmartTree\SmartTree\bin\Payment-Wrapper.pdb
