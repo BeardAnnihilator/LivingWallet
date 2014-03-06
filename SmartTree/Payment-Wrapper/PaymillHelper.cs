@@ -24,6 +24,7 @@ namespace Payment_Wrapper
             clientService = Paymill.GetService<ClientService>();
             paymentService = Paymill.GetService<PaymentService>();
             transactionService = Paymill.GetService<TransactionService>();
+            refundService = Paymill.GetService<RefundService>();
         }
         #endregion
 
@@ -99,6 +100,16 @@ namespace Payment_Wrapper
         }
         #endregion
 
+        #region Refunds
+        RefundService refundService = null;
+        public Refund CreateRefund(Client customer, Payment creditCard, int amount)
+        {
+            Transaction firstTransaction = getTransactions().Where(t => t.Client.Id == customer.Id && t.Payment.Id == creditCard.Id).FirstOrDefault();
+            Refund refund = refundService.Create(firstTransaction.Id, amount);
+            return refund;
+        }
+        #endregion
+
         #region Utilities
         public static int DoubleToPaymillPrice(double price)
         {
@@ -118,6 +129,12 @@ namespace Payment_Wrapper
             if (creditCard == null)
                 creditCard = customer.Payment.FirstOrDefault();
             return ph.CreateTransaction(customer, creditCard, PaymillHelper.DoubleToPaymillPrice(amount));
+        }
+        public static Refund Withdraw(this Client customer, PaymillHelper ph, double amount, Payment creditCard = null)
+        {
+            if (creditCard == null)
+                creditCard = customer.Payment.FirstOrDefault();
+            return ph.CreateRefund(customer, creditCard, PaymillHelper.DoubleToPaymillPrice(amount));
         }
     }
 }

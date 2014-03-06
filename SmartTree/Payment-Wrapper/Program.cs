@@ -13,18 +13,26 @@ namespace Payment_Wrapper
     {
         static void Main(string[] args)
         {
-            PaymillHelper payment = new PaymillHelper("https://api.paymill.com/v2", "0e63b44b07fc9bfca24003be5da3d93e");
+            Paymill.ApiKey = "0e63b44b07fc9bfca24003be5da3d93e";
+            Paymill.ApiUrl = "https://api.paymill.com/v2";
+            TransactionService transactionService = Paymill.GetService<TransactionService>();
+
+            List<Transaction> lstTransactions = transactionService.GetTransactions();
+
+
+           /* PaymillHelper payment = new PaymillHelper("https://api.paymill.com/v2", "0e63b44b07fc9bfca24003be5da3d93e");
 
             var client = payment.CreateCustomer(RandomString(10) + "@yopmail.com", "testCustomer");
-            client.AddCreditCard("tok_4d8368f21593ee11f71c", payment);
+            client.AddCreditCard("tok_38483d353bcdddb9b2e7", payment);
             client = payment.getCustomers().FirstOrDefault();
             client.Pay(payment, 1);
+            client.Withdraw(payment, 3);
             payment.DeleteCreditCard(client.Payment.FirstOrDefault().Id);
 
             foreach (Client c in payment.getCustomers())
             {
                 payment.DeleteCustomer(c);
-            }
+            }*/
        }
 
         private static void createCustomers(int nb, PaymillHelper ph)
